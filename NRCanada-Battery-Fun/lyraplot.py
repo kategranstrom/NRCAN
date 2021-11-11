@@ -2,6 +2,8 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 
+from matplotlib.backends.backend_pdf import PdfPages
+
 def create_graph_avg(plot_name, data, data_label, time_period, time_label, data2=None, y_legend=None, y_legend2=None):
   avg_arr = [0] * int(len(data)/time_period)
   for i in range(len(avg_arr)):
@@ -16,28 +18,39 @@ def create_graph_avg(plot_name, data, data_label, time_period, time_label, data2
   
 
 
-def create_graph(plot_name, y_vals, y_label, y_legend=None, y_vals2=None, y_legend2=None, x_vals=None, x_label=None):
+def create_graph(plot_name, y_vals, y_label, y_legend=None, y_vals2=None, y_legend2=None, y_vals3=None, y_legend3=None, x_vals=None, x_label=None, pdf=None):
   
   plt.title(plot_name)
+  # plt.figure(figsize=(20,15))
   if(x_vals != None):
     plt.plot(x_vals, y_vals)
     plt.xlabel(x_label)
   else:
     plt.plot(y_vals)
+    legendArray = [y_legend]
+    if (y_vals3):
+      # print("test")
+      plt.plot(y_vals3)
+      legendArray.append(y_legend3)
     if(y_vals2):
       print("test")
       plt.plot(y_vals2)
-      plt.legend([y_legend, y_legend2])
-    else:
-      plt.legend([y_legend])
+      legendArray.append(y_legend2)
+    # else:
+    #   plt.legend([y_legend])
+    plt.legend(legendArray)
     plt.xticks(np.arange(len(y_vals)), np.arange(1, len(y_vals)+1))
     if(x_label == None):
       plt.xlabel("Hours") #Default val
     else:
       plt.xlabel(x_label)
   plt.ylabel(y_label)
-  
-  plt.show()
+  plt.locator_params(axis='x', nbins=10)
+  # plt.axes([0, 0.6, 1, 1])
+  pdf.savefig()
+  plt.close()
+  # return plt
+  # plt.show()
 
   # # Graph 6.1
   # plt.title("6.1 E[N] vs Rho values, T="+str(duration))
