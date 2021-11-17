@@ -33,7 +33,6 @@ def create_graph(plot_name, y_vals, y_label, y_legend=None, y_vals2=None, y_lege
       plt.plot(y_vals3)
       legendArray.append(y_legend3)
     if(y_vals2):
-      print("test")
       plt.plot(y_vals2)
       legendArray.append(y_legend2)
     # else:
@@ -49,17 +48,4 @@ def create_graph(plot_name, y_vals, y_label, y_legend=None, y_vals2=None, y_lege
   # plt.axes([0, 0.6, 1, 1])
   pdf.savefig()
   plt.close()
-  # return plt
-  # plt.show()
 
-  # # Graph 6.1
-  # plt.title("6.1 E[N] vs Rho values, T="+str(duration))
-  # plt.xlabel("Rho values")
-  # plt.ylabel("E[N] values")
-  # plt.plot(rho_vals, EN_K_10, marker='.')
-  # plt.plot(rho_vals, EN_K_25, marker='.')
-  # plt.plot(rho_vals, EN_K_50, marker='.')
-  # plt.legend(["k = 10", "k = 25", "k = 50"], loc='upper left')
-  # # plt.show()
-  # plt.savefig('Group_209_Q6_1_T'+str(duration)+'.png', bbox_inches='tight')
-  # plt.close()
